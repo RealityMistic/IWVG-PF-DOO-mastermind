@@ -18,7 +18,7 @@ public class VistaConsola extends Vista {
         }
 
     }
-
+    @Override
     public comunicarseCon(JuegoController controlador){
         if (controlador.esNuevo()){
             menuPedirNumeroJuegos = new MenuPedirNumeroJuegos();

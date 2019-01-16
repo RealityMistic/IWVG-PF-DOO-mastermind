@@ -1,10 +1,12 @@
 package controllers;
 
 import models.CuentaJuego;
+import models.MuertosHeridos;
 import models.Tablero;
 
 public class JuegoController {
     private static Tablero tablero;
+    private static MuertosHeridos muertosHeridos;
     private static CuentaJuego cuentaJuego;
 
 
