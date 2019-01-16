@@ -18,10 +18,10 @@ public class CuentaJuego {
     int getNumeroJuego(){
         return juegoActual;
     }
-    void increasejuegoActual(){
+    void incJuegoActual(){
         juegoActual++;
     }
-    boolean checkLastGame(){
+    boolean comprobarFinal(){
         return juegoActual == maxNumeroJuegos;
     }
 }

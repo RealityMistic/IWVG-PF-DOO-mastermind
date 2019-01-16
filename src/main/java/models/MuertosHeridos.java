@@ -7,7 +7,7 @@ public class MuertosHeridos {
     private int intento;
 
     private BlancoYNegro MuertosHeridos [ANCHO];
-    public void DeadAndWounded(){
+    public void MuertosHeridos(){
         intento = 1;
     }
     public void setBlancoYNegro(int posicion, BlancoYNegro blancoYNegro) {

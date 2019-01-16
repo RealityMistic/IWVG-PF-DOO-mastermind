@@ -22,6 +22,12 @@ public class JuegoController {
         cuentaJuego.setNumeroJuegos(numJuegos);
     }
 
+    public boolean hayFinal(){
+        if (tablero.hayMastermind() || cuentaJuego.comprobarFinal()) r
+            return true;
+        else
+            return false;
+    }
 
 
 

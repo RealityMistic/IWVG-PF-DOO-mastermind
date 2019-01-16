@@ -29,7 +29,7 @@ public class Tablero {
                 * filas.keySet().size();
     }
 
-    boolean existMastermind(Color color) {
+    boolean hayMastermind(Color color) {
         assert color != color.NONE;
         Set<Fila> filaSet = filas.get(color);
         if (filaSet.size() != Fila.ANCHO) {
