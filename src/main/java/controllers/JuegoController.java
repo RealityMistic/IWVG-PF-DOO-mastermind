@@ -51,7 +51,11 @@ public class JuegoController {
     }
 
     public int contarHeridos(){
-        return juego.();
+        return juego.contarHeridos();
+    }
+
+    public void setEstado(Estado estado){
+        juego.setEstado(estado);
     }
 
 }

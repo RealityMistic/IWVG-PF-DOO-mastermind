@@ -67,6 +67,8 @@ public class Juego
             return tablero.todosMuertos();
         }
 
-
+        public void setEstado(Estado estado){
+            this.estado = estado;
+        }
 
 }

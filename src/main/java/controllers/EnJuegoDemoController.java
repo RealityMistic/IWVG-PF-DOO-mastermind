@@ -1,12 +1,21 @@
 package controllers;
 
+import models.Codigo;
 import models.Juego;
+import views.MenuPedirPropuesta;
 
 public class EnJuegoDemoController extends OperacionController {
 
-    public EnJuegoDemoController(Juego juego) {
-        super(juego);
+    MenuPedirPropuesta menuPedirPropuesta;
+
+    public EnJuegoDemoController(JuegoController juegoController) {
+        super(juegoController);
     }
 
+    public Codigo getPropuesta(){
+        Codigo codigo = new Codigo();
+        codigo.crearNuevoCodigo();
 
+        return codigo;
+    }
 }

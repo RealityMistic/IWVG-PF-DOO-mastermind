@@ -18,7 +18,7 @@ public class InicioController extends OperacionController {
         switch (opcion){
             case 1: enJuegoController = new EnJuegoManualController(juegoController);
                     break;
-            case 2: new enJuegoController = new EnJuegoDemoController(juegoController);
+            case 2: enJuegoController = new EnJuegoDemoController(juegoController);
                     break;
             case 3: System.exit(0);
         }

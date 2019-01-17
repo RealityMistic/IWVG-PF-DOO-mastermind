@@ -6,15 +6,16 @@ import models.Juego;
 import views.MenuPedirPropuesta;
 
 public class EnJuegoManualController extends OperacionController {
-
+    MenuPedirPropuesta menuPedirPropuesta;
     public Codigo EnJuegoManualController(Juego juego) {
         super(juego);
-        MenuPedirPropuesta = new MenuPedirPropuesta();
+        menuPedirPropuesta = new MenuPedirPropuesta();
     }
 
     public Codigo getPropuesta(){
         Codigo codigo = new Codigo();
-        codigo.setValor(MenuPedirPropuesta().getPropuesta() );
+        codigo.setValor( menuPedirPropuesta.getPropuesta());
+
         return codigo;
     }
 }
