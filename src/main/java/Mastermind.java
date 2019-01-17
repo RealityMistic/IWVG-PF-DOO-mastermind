@@ -1,3 +1,4 @@
+import controllers.OperacionController;
 import views.Vista;
 import views.VistaConsola;
 import controllers.JuegoController;
@@ -9,21 +10,23 @@ public class Mastermind {
 
     private Vista vista;
 
-    public Mastermind(Vista vista, Logica logica) {
-        this.vista = vista;
-        this.logica = logica;
+    public Mastermind(Logica logica) {
+
+        this.logica =  new Logica;
     }
 
     public void jugar() {
-        JuegoController controlador;
-        do {
-            controlador = logica.getJuegoController();
-            vista.comunicarseCon(controlador);
+    OperacionController controlador;
+		do {
+        controlador = logica.getController();
+        if (controlador != null){
+            controlador.controlar();
+        }
+    } while (controlador != null);
+}
 
-        } while (controlador.hayFinal() );
-    }
     public static void main(String[] args) {
 
-        new Mastermind(new VistaConsola(), new Logica()).jugar();
+        new MasterMind().jugar();
     }
 }

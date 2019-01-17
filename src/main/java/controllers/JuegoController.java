@@ -1,36 +1,57 @@
 package controllers;
 
-import models.CuentaJuego;
+import models.Estado;
+import models.Juego;
 import models.MuertosHeridos;
 import models.Tablero;
+import views.MenuPedirNumeroIntentos;
 
 public class JuegoController {
     private static Tablero tablero;
-    private static MuertosHeridos muertosHeridos;
-    private static CuentaJuego cuentaJuego;
-
+    private static Juego juego;
 
     public boolean esNuevo(){
-        if (cuentaJuego.getNumeroJuego() == 1) return true;
+        if (juego.contarNumeroIntentos() == 1) return true;
         else return false;
     }
 
     public static getTablero(){
+
         return tablero;
     }
 
 
     public void setNumJuegos(int numJuegos){
-        cuentaJuego.setNumeroJuegos(numJuegos);
+
+        MenuPedirNumeroIntentos menuPedirNumeroIntentos = new MenuPedirNumeroIntentos();
+        juego.setNumeroIntentos(menuPedirNumeroIntentos.getClass());
+    }
+    public boolean alcanzadoNumeroIntentos(){
+        return juego.alcanzadoNumeroIntentos();
     }
 
-    public boolean hayFinal(){
-        if (tablero.hayMastermind() || cuentaJuego.comprobarFinal()) r
-            return true;
-        else
-            return false;
+    protected void crearCodigo() {
+        juego.crearCodigo();
     }
 
+    protected void clear() {
+        juego.crearCodigo();
+    }
 
+    public Estado getEstado(){
+        return juego.getEstado();
+    }
+
+    public boolean todosMuertos(){
+        return juego.todosMuertos();
+    }
+
+    public int contarMuertos(){
+        return juego.contarMuertos();
+    }
+
+    public int contarHeridos(){
+        return juego.();
+    }
 
 }

@@ -1,4 +1,8 @@
 package models;
 
-public class Estado {
+public enum Estado {
+    INICIO,
+    EN_JUEGO,
+    FINAL,
+    EXIT;
 }

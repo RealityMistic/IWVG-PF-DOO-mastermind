@@ -2,7 +2,7 @@ package views;
 
 import utils.IO;
 
-public class MenuPedirNumeroJuegos {
+public class MenuPedirNumeroIntentos {
 
     public class getOpcion(){
         String opcion;
