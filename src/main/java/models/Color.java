@@ -1,10 +1,22 @@
 package models;
 
 public enum Color {
-    ROJO,
-    AMARILLO,
-    AZUL,
-    VERDE,
-    NONE;
+
+    AMARILLO('A'),
+    ROJO('R'),
+    VERDE('V'),
+    AZUL('B');
+
+    private char valor;
+
+    Color(char valor){
+
+        this.valor = valor;
+    }
+
+    public String toString() {
+
+        return ""+valor;
+    }
 
 }

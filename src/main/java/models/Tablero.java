@@ -1,48 +1,69 @@
 package models;
 
-import utils.Fila;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tablero {
-    public static final int DURACION = 6;
-    private Map<Color, Set<Fila>> filas;
 
-    Color getColor(Fila fila) {
-        assert fila != null;
-        for (Color color : filas.keySet()) {
-            if (filas.get(color).contains(fila)) {
-                return color;
+    private Codigo codigo;
+
+    private List<Codigo> propuestas;
+
+    public Tablero() {
+        this.propuestas= new ArrayList();
+        crearCodigo();
+    }
+
+
+    public void crearCodigo() {
+        this.codigo = new Codigo();
+        this.codigo.crearNuevoCodigo();
+    }
+
+
+    public int contarMuertos() {
+        int cuenta = 0;
+
+        for (int i = 0; i < Codigo.DIMENSION; i++) {
+            if (this.codigo.split()[i].
+                    equals(
+                            // se accede a la última propuesta introducida
+                        this.propuestas.get(this.propuestas.size() - 1).split()[i])) {
+                cuenta++;
             }
         }
-        return Color.NONE;
+        return cuenta;
     }
 
+    public int contarHeridos() {
+        int cuentaHeridos = 0;
 
-    boolean estaCompleto() {
-        int contTokens = 0;
-        for (Color color : filas.keySet()) {
-            contTokens += filas.get(Color).size();
+        for (String letraUnica : codigo.listaUnica()) {
+            double casosCodigo = codigo.filtrar(letraUnica);
+            int numPropuestas = this.propuestas.size();
+            double casosPropuesta = this.propuestas.get( numPropuestas - 1).filtrar(letraUnica);
+            cuentaHeridos += Math.min(casosCodigo, casosPropuesta);
         }
-        return contTokens == Fila.ANCHO
-                * filas.keySet().size();
+        return (int) cuentaHeridos - this.contarMuertos();
     }
 
-    boolean existMastermind(Color color) {
-        assert color != color.NONE;
-        Set<Fila> filaSet = filas.get(color);
-        if (filaSet.size() != Fila.ANCHO) {
-            return false;
-        }
-        Fila[] filaArray = filaSet
-                .toArray(new Fila[0]);
-        for (int i = 1; i < Fila.ANCHO - 1; i++) {
-            if (filaArray[i].getPosicion() != color) {
-                return false;
-            }
-        }
-        return true;
+    public boolean todosMuertos() {
+        if (this.contarMuertos()== Codigo.DIMENSION)
+            return true;
+        else return false;
     }
 
+    public int getNumeroIntentos() {
+        return propuestas.size();
+    }
+
+    public void clear() {
+        this.propuestas.clear();
+    }
+
+    public void introducir(Codigo propuesta) {
+        assert propuesta != null;
+        this.propuestas.add(propuesta);
+    }
 }

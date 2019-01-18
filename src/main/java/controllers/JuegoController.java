@@ -1,27 +1,49 @@
 package controllers;
 
-import models.CuentaJuego;
-import models.Tablero;
+import models.Codigo;
+import models.Estado;
+import models.Juego;
 
 public class JuegoController {
-    private static Tablero tablero;
-    private static CuentaJuego cuentaJuego;
+    private Juego juego;
 
-
-    public boolean esNuevo(){
-        if (cuentaJuego.getNumeroJuego() == 1) return true;
-        else return false;
-    }
-
-    public static getTablero(){
-        return tablero;
+    public JuegoController() {
+        this.juego = new Juego();
     }
 
 
-    public void setNumJuegos(int numJuegos){
-        cuentaJuego.setNumeroJuegos(numJuegos);
+    public void setNumIntentos(int numeroIntentos){
+        juego.setNumeroIntentos(numeroIntentos);
     }
 
+    public boolean alcanzadoNumeroIntentos(){
+        return juego.alcanzadoNumeroIntentos();
+    }
+
+
+    public void introducir(Codigo propuesta){
+        juego.introducir(propuesta);
+    }
+
+    public Estado getEstado(){
+        return juego.getEstado();
+    }
+
+    public void setEstado(Estado estado){
+        juego.setEstado(estado);
+    }
+
+    public boolean todosMuertos(){
+        return juego.todosMuertos();
+    }
+
+    public int contarMuertos(){
+        return juego.contarMuertos();
+    }
+
+    public int contarHeridos(){
+        return juego.contarHeridos();
+    }
 
 
 
