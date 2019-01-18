@@ -1,18 +1,19 @@
 package models;
 
-import utils.Fila;
-import utils.IO;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class Tablero {
-    public static final int DURACION = 6;
 
     private Codigo codigo;
 
     private List<Codigo> propuestas;
+
+    public Tablero() {
+        this.propuestas= new ArrayList();
+        crearCodigo();
+    }
 
 
     public void crearCodigo() {
@@ -20,34 +21,6 @@ public class Tablero {
         this.codigo.crearNuevoCodigo();
     }
 
-    boolean estaCompleto() {
-        /*
-        int contTokens = 0;
-        for (Color color : filas.keySet()) {
-            contTokens += filas.get(сolor).size();
-        }
-        return contTokens == Fila.ANCHO
-                * filas.keySet().size();
-    */
-    }
-
-    boolean comprobarMastermind(Color color) {
-        /*
-        assert color != color.NONE;
-        Set<Fila> filaSet = filas.get(color);
-        if (filaSet.size() != Fila.ANCHO) {
-            return false;
-        }
-        Fila[] filaArray = filaSet
-                .toArray(new Fila[0]);
-        for (int i = 1; i < Fila.ANCHO - 1; i++) {
-            if (filaArray[i].getPosicion() != color) {
-                return false;
-            }
-        }
-        return true;
-    */
-    }
 
     public int contarMuertos() {
         int cuenta = 0;
@@ -60,7 +33,6 @@ public class Tablero {
                 cuenta++;
             }
         }
-
         return cuenta;
     }
 
@@ -82,7 +54,7 @@ public class Tablero {
         else return false;
     }
 
-    public int contarNumeroIntentos() {
+    public int getNumeroIntentos() {
         return propuestas.size();
     }
 
@@ -90,5 +62,8 @@ public class Tablero {
         this.propuestas.clear();
     }
 
-
+    public void introducir(Codigo propuesta) {
+        assert propuesta != null;
+        this.propuestas.add(propuesta);
+    }
 }

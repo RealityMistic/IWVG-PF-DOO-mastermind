@@ -5,8 +5,7 @@ public enum Color {
     AMARILLO('A'),
     ROJO('R'),
     VERDE('V'),
-    AZUL('B'),
-    NONE;
+    AZUL('B');
 
     private char valor;
 

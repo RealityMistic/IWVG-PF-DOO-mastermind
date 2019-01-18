@@ -1,26 +1,51 @@
 package controllers;
 
 import models.Estado;
-import models.Juego;
-import views.MenuOpciones;
+import views.MenuOpcionDemo;
+import views.MenuPedirNumeroIntentos;
+
+import static models.Estado.INICIO;
 
 public class InicioController extends OperacionController {
-    MenuOpciones menuOpciones = new MenuOpciones();
+    EnJuegoController enJuegoController = null;
+    MenuOpcionDemo menuOpcionDemo = new MenuOpcionDemo();
+    MenuPedirNumeroIntentos menuPedirNumeroIntentos = new MenuPedirNumeroIntentos();
     int opcion;
 
     public InicioController(JuegoController juegoController) {
         super(juegoController);
+        this.juegoController.setEstado(INICIO);
+
     }
 
-    public controlar(){
-        opcion = menuOpciones.getOpcion();
-        EnJuegoController enJuegoController;
+    public EnJuegoController getEnJuegoController(){
+        if (enJuegoController != null) return enJuegoController;
+        else {
+            System.out.println("Sale por controlador de juego nulo");
+            System.exit(0);
+        }
+        return null;
+    }
+    public void controlar(){
+
+        System.out.println("InicioController Estado " + juegoController.getEstado());
+        opcion = menuOpcionDemo.getOpcion();
+
         switch (opcion){
             case 1: enJuegoController = new EnJuegoManualController(juegoController);
-                    break;
-            case 2: enJuegoController = new EnJuegoDemoController(juegoController);
-                    break;
+           //     System.out.println("Devolviendo EnJuegoManual");
+                break;
+
+            case 2:
+            //    System.out.println("Devolviendo EnJuegoDemo");
+                enJuegoController = new EnJuegoDemoController(juegoController);
+                break;
             case 3: System.exit(0);
         }
+
+      //  System.out.println("Poniendo número intentos");
+        juegoController.setNumIntentos(menuPedirNumeroIntentos.getOpcion());
+
+        juegoController.setEstado(Estado.EN_JUEGO);
     }
 }

@@ -39,7 +39,7 @@ public class Codigo {
         return propuesta;
     }
 
-    public double filtrar(String propuesta) {
+    protected double filtrar(String propuesta) {
         assert propuesta != null;
 
         return this.valor.chars().filter(val -> val == propuesta.charAt(0) ).count();

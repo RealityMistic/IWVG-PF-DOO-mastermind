@@ -1,45 +1,36 @@
 package controllers;
 
+import models.Codigo;
 import models.Estado;
 import models.Juego;
-import models.MuertosHeridos;
-import models.Tablero;
-import views.MenuPedirNumeroIntentos;
 
 public class JuegoController {
-    private static Tablero tablero;
-    private static Juego juego;
+    private Juego juego;
 
-    public boolean esNuevo(){
-        if (juego.contarNumeroIntentos() == 1) return true;
-        else return false;
-    }
-
-    public static getTablero(){
-
-        return tablero;
+    public JuegoController() {
+        this.juego = new Juego();
     }
 
 
-    public void setNumJuegos(int numJuegos){
-
-        MenuPedirNumeroIntentos menuPedirNumeroIntentos = new MenuPedirNumeroIntentos();
-        juego.setNumeroIntentos(menuPedirNumeroIntentos.getClass());
+    public void setNumIntentos(int numeroIntentos){
+        juego.setNumeroIntentos(numeroIntentos);
     }
+
     public boolean alcanzadoNumeroIntentos(){
         return juego.alcanzadoNumeroIntentos();
     }
 
-    protected void crearCodigo() {
-        juego.crearCodigo();
-    }
 
-    protected void clear() {
-        juego.crearCodigo();
+    public void introducir(Codigo propuesta){
+        juego.introducir(propuesta);
     }
 
     public Estado getEstado(){
         return juego.getEstado();
+    }
+
+    public void setEstado(Estado estado){
+        juego.setEstado(estado);
     }
 
     public boolean todosMuertos(){
@@ -54,8 +45,6 @@ public class JuegoController {
         return juego.contarHeridos();
     }
 
-    public void setEstado(Estado estado){
-        juego.setEstado(estado);
-    }
+
 
 }

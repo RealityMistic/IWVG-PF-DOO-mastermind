@@ -14,6 +14,6 @@ public class MensajeMuertosYHeridos {
         IO io = new IO();
 
         io.write( "MUERTOS: " + Integer.toString(muertos));
-        io.write( " --- HERIDOS: " + Integer.toString(heridos));
+        io.writeln( " --- HERIDOS: " + Integer.toString(heridos));
     }
 }

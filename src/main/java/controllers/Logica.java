@@ -8,31 +8,31 @@ import static models.Estado.INICIO;
 public class Logica {
     private static JuegoController juegoController;
 
+    private InicioController inicioController;
+    private EnJuegoController enJuegoController;
+    private ContinuarController continuarController;
+
     public static JuegoController getJuegoController() {
         return juegoController;
     }
 
-    private InicioController inicioController;
-    private EnJuegoController enJuegoController;
-    private ContinuarController continuarController;
-    private JuegoController juegoController = new JuegoController();
-
-
     public Logica(JuegoController juegoController, InicioController inicioController, ContinuarController continuarController) {
         this.juegoController = juegoController;
         this.inicioController = inicioController;
-        this.enJuegoController = enJuegoController;
         this.continuarController = continuarController;
     }
 
     public OperacionController getController() {
+        // System.out.println("Logica getController" + juegoController.getEstado());
         switch (juegoController.getEstado()) {
             case INICIO:
-                 return inicioController();
+            //    System.out.println("Se devuelve inicioController)");
+                 return inicioController;
             case EN_JUEGO:
-                return enJuegoController();
+            //    System.out.println("Se devuelve EnJuegoController");
+                return inicioController.getEnJuegoController();
             case FINAL:
-                return continuarController();
+                return continuarController;
             default:
                 return null;
         }

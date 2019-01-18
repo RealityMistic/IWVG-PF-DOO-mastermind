@@ -4,11 +4,12 @@ import models.Codigo;
 import models.Juego;
 import views.MenuPedirPropuesta;
 
-public class EnJuegoDemoController extends OperacionController {
+public class EnJuegoDemoController extends EnJuegoController {
 
     MenuPedirPropuesta menuPedirPropuesta;
 
     public EnJuegoDemoController(JuegoController juegoController) {
+
         super(juegoController);
     }
 

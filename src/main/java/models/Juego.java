@@ -30,30 +30,20 @@ public class Juego
             tablero.crearCodigo();
         }
 
-        public boolean comprobarMastermind(Codigo codigoPropuesta) {
-            return tablero.comprobarMastermind(codigoPropuesta);
-        }
 
-        public void put(Codigo codigo) {
-            tablero.codigo(codigo);
-        }
-
-
-        void setNumeroIntentos(int numJuegos){
+        public void setNumeroIntentos(int numJuegos){
             assert(numJuegos % 2 == 1);
             maxNumeroIntentos = numJuegos;
         }
 
-        int getMaxNumeroIntentos(){
-            maxNumeroIntentos;
+        public void introducir(Codigo propuesta) {
+            assert propuesta != null;
+            this.tablero.introducir(propuesta);
         }
 
-        public int contarNumeroIntentos() {
-            return tablero.contarNumeroIntentos();
-        }
 
         public boolean alcanzadoNumeroIntentos(){
-            return maxNumeroIntentos == tablero.contarNumeroIntentos();
+            return tablero.getNumeroIntentos() == this.maxNumeroIntentos;
         }
 
         public int contarMuertos(){
@@ -63,12 +53,10 @@ public class Juego
         public int contarHeridos() {
             return tablero.contarHeridos();
         }
+
         public boolean todosMuertos(){
             return tablero.todosMuertos();
         }
 
-        public void setEstado(Estado estado){
-            this.estado = estado;
-        }
 
 }

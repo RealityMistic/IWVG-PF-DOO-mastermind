@@ -1,18 +1,21 @@
-import controllers.OperacionController;
-import views.Vista;
-import views.VistaConsola;
-import controllers.JuegoController;
-import controllers.Logica;
+import controllers.*;
+import models.Estado;
+
+import static models.Estado.INICIO;
 
 public class Mastermind {
 
     private Logica logica;
 
-    private Vista vista;
+    private JuegoController juegoController;
 
-    public Mastermind(Logica logica) {
+    public Mastermind() {
+        this.juegoController = new JuegoController();
 
-        this.logica =  new Logica;
+        this.logica =  new Logica(
+                juegoController,
+                new InicioController(juegoController),
+                new ContinuarController(juegoController));
     }
 
     public void jugar() {
@@ -20,6 +23,7 @@ public class Mastermind {
 		do {
         controlador = logica.getController();
         if (controlador != null){
+        //    System.out.println("Se llama a controlar()");
             controlador.controlar();
         }
     } while (controlador != null);
@@ -27,6 +31,6 @@ public class Mastermind {
 
     public static void main(String[] args) {
 
-        new MasterMind().jugar();
+        new Mastermind().jugar();
     }
 }

@@ -3,7 +3,7 @@ package controllers;
 import models.Juego;
 
 public abstract class OperacionController {
-    JuegoController juegoController
+    JuegoController juegoController;
     protected OperacionController(JuegoController juegoController) {
         this.juegoController = juegoController;
     }

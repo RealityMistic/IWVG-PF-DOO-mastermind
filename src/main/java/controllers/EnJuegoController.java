@@ -6,31 +6,40 @@ import models.Juego;
 import views.MensajeFinal;
 import views.MensajeMuertosYHeridos;
 
-public abstract class EnJuegoController {
+import static models.Estado.FINAL;
+
+public abstract class EnJuegoController extends OperacionController{
+    public EnJuegoController(JuegoController juegoController) {
+        super(juegoController);
+    }
 
     public abstract Codigo getPropuesta();
 
-    public void controlar(JuegoController juegoController) {
-        Juego.setEstado(Estado.EN_JUEGO);
-        String propuesta = this.getPropuesta();
 
+    public void controlar() {
+        this.juegoController.setEstado(Estado.EN_JUEGO);
+       // System.out.println("Se va a pedir la propuesta");
+        Codigo propuesta = this.getPropuesta();
+        System.out.println("La propuesta es "+ propuesta.getValor());
         MensajeMuertosYHeridos mensajeMuertosYHeridos;
-        MensajeFinal mensajeFinal;
-        if (juegoController.todosMuertos(propuesta)) {
+        MensajeFinal mensajeFinal = new MensajeFinal();
+
+        this.juegoController.introducir(propuesta);
+
+        mensajeMuertosYHeridos = new MensajeMuertosYHeridos(
+                juegoController.contarMuertos(),
+                juegoController.contarHeridos()
+        );
+        mensajeMuertosYHeridos.mostrarMuertosYHeridos();
+        if (juegoController.todosMuertos()) {
             mensajeFinal.ganar();
-        }else if{
-            juegoController.alcanzadoNumeroIntentos();
-            mensajeFinal.perder();
-        } else{
-             mensajeMuertosYHeridos = new MensajeMuertosYHeridos(
-                    juegoController.contarMuertos(),
-                    juegoController.contarHeridos()
-             );
-
-             mensajeMuertosYHeridos.mostrarMuertosYHeridos();
-
-             juegoController.setEstado(Estado.FINAL);
+            juegoController.setEstado(FINAL);
         }
+        if (this.juegoController.alcanzadoNumeroIntentos()){
+            mensajeFinal.perder();
+            juegoController.setEstado(FINAL);
+        }
+
 
     }
 }
