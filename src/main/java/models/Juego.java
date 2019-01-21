@@ -5,13 +5,30 @@ public class Juego
 
         private Estado estado;
         private Tablero tablero;
+        private int puntos;
 
         int maxNumeroIntentos;
 
         public Juego() {
             estado = Estado.INICIO;
             tablero = new Tablero();
+            puntos = 0;
 
+        }
+
+        public int incrementarPuntosPorJugada(int muertos, int heridos){
+            if (!(muertos >0)) muertos = 0;
+            if (!(heridos >0)) heridos = 0;
+            this.puntos = puntos + 40 - (10 * muertos) - (5 *heridos);
+            return puntos;
+        }
+
+        public int getPuntos(){
+            return puntos;
+        }
+
+        public void setPuntos(int puntos){
+            this.puntos = puntos;
         }
 
         public Estado getEstado() {

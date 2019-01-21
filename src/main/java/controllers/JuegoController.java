@@ -45,6 +45,13 @@ public class JuegoController {
         return juego.contarHeridos();
     }
 
+    public int getPuntos() { return juego.getPuntos();}
+
+    public void setPuntos(int puntos) { juego.setPuntos(puntos);}
+
+    public int incrementarPuntosPorJugada(int muertos, int heridos){
+        return juego.incrementarPuntosPorJugada(muertos, heridos);
+    }
 
 
 }

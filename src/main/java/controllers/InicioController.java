@@ -16,6 +16,7 @@ public class InicioController extends OperacionController {
         super(juegoController);
         this.juegoController.setEstado(INICIO);
 
+
     }
 
     public EnJuegoController getEnJuegoController(){
@@ -29,6 +30,7 @@ public class InicioController extends OperacionController {
     public void controlar(){
 
         System.out.println("InicioController Estado " + juegoController.getEstado());
+        this.juegoController.setPuntos(0);
         opcion = menuOpcionDemo.getOpcion();
 
         switch (opcion){

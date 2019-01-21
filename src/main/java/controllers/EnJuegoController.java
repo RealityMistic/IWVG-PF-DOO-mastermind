@@ -5,6 +5,7 @@ import models.Estado;
 import models.Juego;
 import views.MensajeFinal;
 import views.MensajeMuertosYHeridos;
+import views.MensajePuntos;
 
 import static models.Estado.FINAL;
 
@@ -22,6 +23,7 @@ public abstract class EnJuegoController extends OperacionController{
         Codigo propuesta = this.getPropuesta();
         System.out.println("La propuesta es "+ propuesta.getValor());
         MensajeMuertosYHeridos mensajeMuertosYHeridos;
+        MensajePuntos mensajePuntos;
         MensajeFinal mensajeFinal = new MensajeFinal();
 
         this.juegoController.introducir(propuesta);
@@ -31,6 +33,17 @@ public abstract class EnJuegoController extends OperacionController{
                 juegoController.contarHeridos()
         );
         mensajeMuertosYHeridos.mostrarMuertosYHeridos();
+        mensajePuntos = new MensajePuntos(
+                juegoController.getPuntos(),
+                juegoController.contarMuertos(),
+                juegoController.contarHeridos(),
+                juegoController.incrementarPuntosPorJugada(
+                        juegoController.contarMuertos(),
+                        juegoController.contarHeridos()
+                )
+                );
+        mensajePuntos.mostrarPuntos();
+
         if (juegoController.todosMuertos()) {
             mensajeFinal.ganar();
             juegoController.setEstado(FINAL);
